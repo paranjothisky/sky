@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="cache-control" content="no-cache">
+<title>Paranjothi Simplified Kundalini Yoga Centre -  பரஞ்சோதி எளியமுறை குண்டலினி யோகா மையம் </title>
+<link href="/files/styles/default.css" rel="stylesheet" type="text/css" media="screen" />
+
+{% if page.include_pic_scripts != null %}
+	<script type="text/javascript" src="/files/scripts/prototype.js"></script>
+	<script type="text/javascript" src="/files/scripts/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="/files/scripts/lightbox.js"></script>
+	<link rel="stylesheet" href="/files/styles/lightbox.css" type="text/css" media="screen" />
+{% endif %}
+
+</head>
+
+<body>
+<!-- start header -->
+<div id="header">
+	<div id="logo">
+		{% if page.lang == 'en' %}
+			<h3><a href="/ta/{{page.topic}}/{{page.subtopic}}.html"><span style="font-size:12px;">தமிழ் வடிவம்</span></a></h3>
+		{% else %}
+			<h3><a href="/en/{{page.topic}}/{{page.subtopic}}.html"><span style="font-size:12px;">English Version</span></a></h3>
+		{% endif %}
+	</div>
+	<div id="splash" background-image="images/img02.gif"><!--img width="191" height="220" src="images/yogi_small.png"  alt="" /-->&nbsp;</div>
+
+
+
+	<div id="menu">
+		<ul id="main">
+			{% for topic in page.topics %}
+				<li class="{% if topic[0] == page.topic %}current_page_item{% endif %}">
+					<a href="/{{page.lang}}/{{topic[0]}}/{{topic[0]}}.html">{{topic[1]}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<!-- end header -->
+
+
+
+<div id="wrapper">
+	<!-- start page -->
+	<div id="page">
+		<div id="sidebar1" class="sidebar">
+			<ul>
+				{% for subtopic in page.subtopics %}
+					<li>
+						<h2>{{subtopic[0]}}</h2>
+						<ul>
+							{% for link in subtopic[1] %}
+								<li class="{% if link[0] == page.subtopic %}active{% endif %}">
+									<a href="/{{page.lang}}/{{page.topic}}/{{link[0]}}.html">{{link[1]}}</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</li>
+				{% endfor %}
+				
+			</ul>
+		</div>
+
+		<!-- start content -->
+		<div id="content">
+			<div class="flower"></div>
+			{{ content }}
+		</div>
+		<!-- end content -->
+
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end page -->
+</div>
+
+<div id="footer">
+	<p class="copyright">&copy;&nbsp;&nbsp;2009 All Rights Reserved &nbsp;&bull;&nbsp; Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+	<!--p class="link"><a href="#">Privacy Policy</a>&nbsp;&#8226;&nbsp;<a href="#">Terms of Use</a></p-->
+</div>
+
+<script type="text/javascript">
+	var s = document.getElementById("email");
+	var domain = "yaho" +"o.co.in";
+	var mail  = "mai" + "lto:";
+	var at = "@";
+	s.innerHTML = "paranjothi_skytrust" + at + domain;
+	s.href= mail + s.innerHTML;
+</script>	
+
+</body>
+</html>
