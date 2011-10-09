@@ -15,14 +15,29 @@
 
 </head>
 
+{% assign tilde = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' %}
+{% capture arr %}{{ page.url | replace_first:'/','' | replace:'/',tilde | replace_first:'.html','' }}{% endcapture %}
+{% capture lang %}{{ arr | truncate:2, ''}}{%endcapture%}
+{% capture langTilde %}{{lang}}{{tilde}}{%endcapture%}
+{% capture maintopic %}{{ arr | replace_first:langTilde, '' | truncate:50, '' | replace:'~','' }}{%endcapture%}
+{% capture subtopic %}{{ arr | replace_first:langTilde, '' | replace_first:maintopic,''  | replace:'~','' }}{%endcapture%}
+
+{% if lang == 'en' %}
+	{% assign lang0 = 0 %}
+	{% assign lang1 = 1 %}
+{% else %}
+	{% assign lang0 = 1 %}
+	{% assign lang1 = 2 %}
+{% endif %}
+
 <body>
 <!-- start header -->
 <div id="header">
 	<div id="logo">
-		{% if page.lang == 'en' %}
-			<h3><a href="../../ta/{{page.topic}}/{{page.subtopic}}.html"><span style="font-size:12px;">தமிழ் வடிவம்</span></a></h3>
+		{% if lang == 'en' %}
+			<h3><a href="../../ta/{{maintopic}}/{{subtopic}}.html"><span style="font-size:12px;">தமிழ் வடிவம்</span></a></h3>
 		{% else %}
-			<h3><a href="../../en/{{page.topic}}/{{page.subtopic}}.html"><span style="font-size:12px;">English Version</span></a></h3>
+			<h3><a href="../../en/{{maintopic}}/{{subtopic}}.html"><span style="font-size:12px;">English Version</span></a></h3>
 		{% endif %}
 	</div>
 	<div id="splash" background-image="images/img02.gif"><!--img width="191" height="220" src="images/yogi_small.png"  alt="" /-->&nbsp;</div>
@@ -32,9 +47,14 @@
 	<div id="menu">
 		<ul id="main">
 			{% for topic in page.topics %}
-				<li class="{% if topic[0] == page.topic %}current_page_item{% endif %}">
-					<a href="../../{{page.lang}}/{{topic[0]}}/{{topic[0]}}.html">{{topic[1]}}</a>
-				</li>
+				{% if topic.topic[0] == maintopic %}
+				    {% assign secs = topic.secs %}
+					<li class="current_page_item">
+				{% else %}
+					<li>
+				{% endif %}
+						<a href="../../{{lang}}/{{topic.topic[0]}}/{{topic.topic[0]}}.html">{{topic.topic[lang1]}}</a>
+					</li>
 			{% endfor %}
 		</ul>
 	</div>
@@ -48,13 +68,13 @@
 	<div id="page">
 		<div id="sidebar1" class="sidebar">
 			<ul>
-				{% for subtopic in page.subtopics %}
+				{% for sec in secs %}
 					<li>
-						<h2>{{subtopic[0]}}</h2>
+						<h2>{{sec.sec[lang0]}}</h2>
 						<ul>
-							{% for link in subtopic[1] %}
-								<li class="{% if link[0] == page.subtopic %}active{% endif %}">
-									<a href="../../{{page.lang}}/{{page.topic}}/{{link[0]}}.html">{{link[1]}}</a>
+							{% for link in sec.subs %}
+								<li class="{% if link[0] == subtopic %}active{% endif %}">
+									<a href="../../{{lang}}/{{maintopic}}/{{link[0]}}.html">{{link[lang1]}}</a>
 								</li>
 							{% endfor %}
 						</ul>
