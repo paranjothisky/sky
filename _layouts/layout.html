@@ -59,11 +59,13 @@
 
     <!--   page.topics {{page.topics}}-->
     <!--   page.topics.length {{page.topics.length}}-->
+    <!--   layout.topics {{layout.topics}}-->
+    <!--   layout.topics.length {{layout.topics.length}}-->
     
 <!--
 Test array:
     <ul>
-	{% for topic in page.topics %}
+	{% for topic in layout.topics %}
 		<li> {{topic.topic[0]}} : {{topic.topic[1]}} , {{topic.topic[2]}} </li>
 		<ul>
 			{% for sec in topic.secs %}
