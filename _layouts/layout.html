@@ -34,6 +34,9 @@
 {% capture langTilde %}{{lang}}{{tilde}}{%endcapture%}
 {% capture maintopic %}{{ arr | replace_first:langTilde, '' | truncate:50, '' | replace:'~','' }}{%endcapture%}
 {% capture subtopic %}{{ arr | replace_first:langTilde, '' | replace_first:maintopic,''  | replace:'~','' }}{%endcapture%}
+{% if subtopic == '' %}
+    {% assign subtopic = 'index' %}
+{% endif %}
 
 {% if lang == 'en' %}
 	{% assign lang0 = 0 %}
@@ -45,6 +48,14 @@
 
 <body>
 <!-- start header -->
+<!--   page.pageurl "{{page.pageurl}}"-->
+<!--   page.url "{{page.url}}"-->
+<!--   tilde "{{tilde}}"-->
+<!--   arr "{{arr}}"-->
+<!--   lang "{{lang}}"-->
+<!--   langTilde "{{langTilde}}"-->
+<!--   maintopic {{maintopic}}-->
+<!--   subtopic {{subtopic}}-->
 <div id="header">
 	<div id="logo">
 		{% if lang == 'en' %}
