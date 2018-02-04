@@ -56,6 +56,29 @@
 <!--   langTilde "{{langTilde}}"-->
 <!--   maintopic {{maintopic}}-->
 <!--   subtopic {{subtopic}}-->
+
+    <!--   page.topics {{page.topics}}-->
+    <!--   page.topics.length {{page.topics.length}}-->
+    
+<!--
+Test array:
+    <ul>
+	{% for topic in page.topics %}
+		<li> {{topic.topic[0]}} : {{topic.topic[1]}} , {{topic.topic[2]}} </li>
+		<ul>
+			{% for sec in topic.secs %}
+				<li> {{sec.sec[0]}} , {{sec.sec[1]}} </li>
+				<ul>
+					{% for sub in sec.subs %}
+						<li> {{sub[0]}} : {{sub[1]}} , {{sub[2]}} </li>
+					{% endfor %}
+				</ul>
+			{% endfor %}
+		</ul>
+		<br/>
+	{% endfor %}
+	</ul>
+-->
 <div id="header">
 	<div id="logo">
 		{% if lang == 'en' %}
